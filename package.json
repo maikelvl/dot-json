@@ -1,0 +1,35 @@
+{
+  "name": "dot-json",
+  "version": "0.1.0",
+  "description": "Easily edit a json file from the CLI or NodeJS",
+  "main": "index.js",
+  "bin": {
+    "dot-json": "./bin/dot-json.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crobays/dot-json.git"
+  },
+  "keywords": [
+    "json",
+    "edit",
+    "get",
+    "set",
+    "delete",
+    "cli"
+  ],
+  "author": {
+    "name": "Maikel Vlasman",
+    "email": "dot-json-ojc8qmc1qkpqg48f@userex.nl",
+    "url": "https://github.com/crobays"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crobays/dot-json/issues"
+  },
+  "homepage": "https://github.com/crobays/dot-json",
+  "dependencies": {
+    "docopt": "~0.6.2",
+    "underscore-keypath": "~0.0.22"
+  }
+}

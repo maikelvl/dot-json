@@ -2,11 +2,14 @@
 ---
 Easily edit a json file from the CLI or NodeJS.
 
-### Install via NodeJS
+### Install global
 ```bash
-npm install dot-json --save
+npm install -g dot-json
 ```
-
+or local
+```bash
+npm install --save dot-json
+```
 ### Use from the CLI
 ```bash
 dot-json myfile.json user.name

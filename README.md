@@ -12,7 +12,22 @@ npm install --save dot-json
 ```
 ### Use from the CLI
 ```bash
+dot-json myfile.json user.name "John Doe"
+dot-json myfile.json user.email "john@example.com"
+```
+myfile.json now looks like
+```json
+{
+    "user": {
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
+}
+```
+
+```bash
 dot-json myfile.json user.name
+John Doe
 ```
 ```
 Usage:

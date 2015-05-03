@@ -46,15 +46,34 @@ Options:
 ```javascript
 var dot_json = require('dot_json');
 
-var file = dot_json.file('myfile.json')
-file.set('user.name', 'john');
-file.set('user.email', 'john@example.com');
+var myfile = dot_json.file('myfile.json')
+myfile.set('user.name', 'John Doe');
+myfile.set('user.email', 'john@example.com');
+```
+myfile.json now looks like
+```json
+{
+    "user": {
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
+}
+```
 
-var value = dot_json.file('myfile.json').get('user.name');
-
+```javascript
+var value = myfile.get('user.name');
+// value = 'John Doe'
 console.log(value);
 
-file.delete('user.name');
+myfile.delete('user.name');
+```
+myfile.json now looks like
+```json
+{
+    "user": {
+        "email": "john@example.com"
+    }
+}
 ```
 
 [npmjs.org/package/dot-json](https://npmjs.org/package/dot-json)

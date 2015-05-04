@@ -44,7 +44,7 @@ Options:
 
 ### Use it in NodeJS
 ```javascript
-var dot_json = require('dot_json');
+var dot_json = require('dot-json');
 
 var myfile = dot_json.file('myfile.json')
 myfile.set('user.name', 'John Doe');

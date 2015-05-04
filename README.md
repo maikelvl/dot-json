@@ -46,7 +46,7 @@ Options:
 ```javascript
 var dot_json = require('dot-json');
 
-var myfile = dot_json.file('myfile.json')
+var myfile = dot_json.file('myfile.json');
 myfile.set('user.name', 'John Doe');
 myfile.set('user.email', 'john@example.com');
 ```

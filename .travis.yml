@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.12'
+before_install:
+- npm install
+after_success: npm publish
+before_deploy: "echo 'ready to deploy?'"
+after_deploy:
+- "echo 'deployed!'"

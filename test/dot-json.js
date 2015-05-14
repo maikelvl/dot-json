@@ -14,6 +14,7 @@ catch(e) {
 fs.writeFileSync(dir+'/read-test.json', JSON.stringify(
 	{
 		a_string: "this is a string",
+		"dotted.key": "a string",
 		a_number: 42,
 		an_object: {
 			key_1: "string-one",
@@ -55,6 +56,7 @@ describe("dot-json", function() {
 			var dot_json = new DotJson("test-files/read-test.json");
 			var object = {
 				a_string: "this is a string",
+				"dotted.key": "a string",
 				a_number: 42,
 				an_object: {
 					key_1: "string-one",
@@ -125,6 +127,7 @@ describe("dot-json", function() {
 			fs.writeFileSync(dir+'/read-test-sync.json', JSON.stringify(
 				{
 					a_string: "this is a string",
+					"dotted.key": "a string",
 					a_number: 42,
 					an_object: {
 						key_1: "string-one",
@@ -142,6 +145,7 @@ describe("dot-json", function() {
 			var dot_json = new DotJson("test-files/read-test-sync.json");
 			var object = {
 				a_string: "this is a string",
+				"dotted.key": "a string",
 				a_number: 42,
 				an_object: {
 					key_1: "string-one",
@@ -217,6 +221,7 @@ describe("dot-json", function() {
 			expect(JSON.stringify(object)).equal(JSON.stringify(
 				{
 					a_string: "this is a string",
+					"dotted.key": "a string",
 					a_number: 42,
 					an_object: {
 						key_1: "string-one",
@@ -236,6 +241,14 @@ describe("dot-json", function() {
 			var dot_json = new DotJson("test-files/read-test.json");
 			dot_json.get("a_string", function(value) {
 				expect(value).equal("this is a string");
+				done();
+			});
+		});
+
+		it("should be able to get a json string value", function(done) {
+			var dot_json = new DotJson("test-files/read-test.json");
+			dot_json.get("dotted..key", function(value) {
+				expect(value).equal("a string");
 				done();
 			});
 		});

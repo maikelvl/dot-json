@@ -1,6 +1,6 @@
 {
   "name": "dot-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easily edit a json file from the CLI or NodeJS",
   "main": "lib/dot-json.js",
   "bin": {

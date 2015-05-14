@@ -1,5 +1,7 @@
 # dot-json
+[![Build Status](https://travis-ci.org/crobays/dot-json.svg?branch=master)](https://travis-ci.org/crobays/dot-json)
 ---
+
 Easily edit a json file from the CLI or NodeJS.
 
 ### Install global

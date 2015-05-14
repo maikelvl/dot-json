@@ -41,15 +41,35 @@ Options:
   -v --version    Print the version number
 ```
 
+### Quick tip for editing package.json
+Add to .bash_profile:
+```bash
+alias package="dot-json package.json"
+```
+Use it like this:
+```bash
+package name "my-package"
+```
 
 ### Use it in NodeJS
+#### Initialization
 ```javascript
-var dot_json = require('dot_json');
-
-var myfile = dot_json.file('myfile.json')
-myfile.set('user.name', 'John Doe');
-myfile.set('user.email', 'john@example.com');
+var DotJson = require('dot_json');
+var myfile = new DotJson('myfile.json');
 ```
+
+#### Writing asynchronous
+```javascript
+myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save(function(){
+  console.log('saved');
+});
+```
+
+#### Writing synchronous
+```javascript
+myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save();
+```
+
 myfile.json now looks like
 ```json
 {
@@ -60,13 +80,33 @@ myfile.json now looks like
 }
 ```
 
+#### Reading asynchronous
+```javascript
+myfile.get('user.name', function(value){
+  // value = 'John Doe'
+  console.log(value);
+});
+```
+
+#### Reading synchronous
 ```javascript
 var value = myfile.get('user.name');
 // value = 'John Doe'
 console.log(value);
-
-myfile.delete('user.name');
 ```
+
+#### Deleting asynchronous
+```javascript
+myfile.delete('user.name').save(function(){
+  console.log('saved');
+});
+```
+
+#### Deleting synchronous
+```javascript
+myfile.delete('user.name').save();
+```
+
 myfile.json now looks like
 ```json
 {
@@ -77,4 +117,3 @@ myfile.json now looks like
 ```
 
 [npmjs.org/package/dot-json](https://npmjs.org/package/dot-json)
-

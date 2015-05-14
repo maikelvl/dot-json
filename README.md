@@ -60,14 +60,15 @@ var DotJson = require('dot_json');
 var myfile = new DotJson('myfile.json');
 ```
 
-#### Writing asynchronous
+#### Writing
+asynchronous
 ```javascript
 myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save(function(){
   console.log('saved');
 });
 ```
 
-#### Writing synchronous
+synchronous
 ```javascript
 myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save();
 ```
@@ -82,7 +83,8 @@ myfile.json now looks like
 }
 ```
 
-#### Reading asynchronous
+#### Reading
+asynchronous
 ```javascript
 myfile.get('user.name', function(value){
   // value = 'John Doe'
@@ -90,21 +92,22 @@ myfile.get('user.name', function(value){
 });
 ```
 
-#### Reading synchronous
+synchronous
 ```javascript
 var value = myfile.get('user.name');
 // value = 'John Doe'
 console.log(value);
 ```
 
-#### Deleting asynchronous
+#### Deleting
+asynchronous
 ```javascript
 myfile.delete('user.name').save(function(){
   console.log('saved');
 });
 ```
 
-#### Deleting synchronous
+synchronous
 ```javascript
 myfile.delete('user.name').save();
 ```

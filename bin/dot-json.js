@@ -2,7 +2,7 @@
 
 'use strict';
 
-var dot_json = require('../')
+var DotJson = require('../')
 	,fs = require('fs')
 	,path = require('path')
 	,docopt = require('docopt').docopt
@@ -27,16 +27,55 @@ var args = docopt('Usage:\n  '+name+' '+usage.join('\n  '+name+' ')+'\n\nOptions
 });
 
 try {
+	var dot_json = new DotJson(args['<file>']);
 	if (args['<value>']) {
-		dot_json.file(args['<file>']).set(args['<key-path>'], args['<value>']);
+		var value = args['<value>'];
+		switch(value) {
+			case 'true':
+				value = true;
+				break;
+			case 'false':
+				value = false;
+				break;
+			case 'undefined':
+				value = undefined;
+				break;
+			case 'null':
+				value = null;
+				break;
+		}
+		if (value == parseInt(value)) {
+			value = parseInt(value);
+		}
+		else if(value == parseFloat(value)) {
+			value = parseFloat(value);
+		}
+		try {
+			dot_json.set(args['<key-path>'], value);
+		}
+		catch(e) {
+			console.error(e.message);
+		}
 	}
 	else if (args['--delete']) {
-		dot_json.file(args['<file>']).delete(args['<key-path>']);
+		dot_json.delete(args['<key-path>']);
 	}
 	else {
-		dot_json.file(args['<file>']).get(args['<key-path>'], function(object){
-			console.log(object);
+		dot_json.get(args['<key-path>'], function(object){
+			if (typeof object === 'object') {
+				console.log(JSON.stringify(object, null, '  '));
+			}
+			else {
+				console.log(object);
+			}
+			
 		});
+	}
+	try {
+		dot_json.save();
+	}
+	catch(e) {
+		console.error(e.message);
 	}
 }
 catch (e) {
@@ -51,4 +90,3 @@ catch (e) {
 	}
 	process.exit(1);
 }
-process.exit(0);

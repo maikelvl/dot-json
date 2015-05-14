@@ -56,9 +56,11 @@ try {
 		catch(e) {
 			console.error(e.message);
 		}
+		dot_json.save();
 	}
 	else if (args['--delete']) {
 		dot_json.delete(args['<key-path>']);
+		dot_json.save();
 	}
 	else {
 		dot_json.get(args['<key-path>'], function(object){
@@ -70,12 +72,6 @@ try {
 			}
 			
 		});
-	}
-	try {
-		dot_json.save();
-	}
-	catch(e) {
-		console.error(e.message);
 	}
 }
 catch (e) {

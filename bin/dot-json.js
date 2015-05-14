@@ -64,13 +64,14 @@ try {
 	}
 	else {
 		dot_json.get(args['<key-path>'], function(object){
+			if (object === undefined) {
+				return;
+			}
 			if (typeof object === 'object') {
 				console.log(JSON.stringify(object, null, '  '));
+				return;
 			}
-			else {
-				console.log(object);
-			}
-			
+			console.log(object);
 		});
 	}
 }

@@ -1,5 +1,5 @@
 # dot-json
-[![Build Status](https://travis-ci.org/crobays/dot-json.svg?branch=master)](https://travis-ci.org/crobays/dot-json)
+[![Build Status](https://travis-ci.org/maikelvl/dot-json.svg?branch=master)](https://travis-ci.org/maikelvl/dot-json)
 ---
 
 Easily edit a json file from the CLI or NodeJS.

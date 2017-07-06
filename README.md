@@ -56,7 +56,7 @@ package name "my-package"
 ### Use it in NodeJS
 #### Initialization
 ```javascript
-var DotJson = require('dot_json');
+var DotJson = require('dot-json');
 var myfile = new DotJson('myfile.json');
 ```
 

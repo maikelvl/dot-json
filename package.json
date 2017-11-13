@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/crobays/dot-json.git"
+    "url": "https://github.com/maikelvl/dot-json.git"
   },
   "keywords": [
     "json",
@@ -24,13 +24,13 @@
   "author": {
     "name": "Maikel Vlasman",
     "email": "dot-json-ojc8qmc1qkpqg48f@userex.nl",
-    "url": "https://github.com/crobays"
+    "url": "https://github.com/maikelvl"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/crobays/dot-json/issues"
+    "url": "https://github.com/maikelvl/dot-json/issues"
   },
-  "homepage": "https://github.com/crobays/dot-json",
+  "homepage": "https://github.com/maikelvl/dot-json",
   "dependencies": {
     "docopt": "~0.6.2",
     "underscore-keypath": "~0.0.22"

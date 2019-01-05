@@ -27,8 +27,6 @@ var args = docopt('Usage:\n  '+name+' '+usage.join('\n  '+name+' ')+'\n\nOptions
 	version: package_.version
 });
 
-console.log(args)
-
 try {
 	var dot_json = new DotJson(args['<file>']);
 

@@ -11,11 +11,12 @@ var DotJson = require('../')
 
 var usage = [
 	'<file> <key-path>',
-	'<file> <key-path> <value>',
+	'<file> <key-path> <value> [--indent=<n>]',
 	'<file> <key-path> --delete',
 ];
 
 var options = [
+	'--indent=<n>    Indent with <n> of white space characters [default: 2]',
 	'-d --delete     Delete the key-path',
 	'-h --help       Show this message with options',
 	'-v --version    Print the version number',
@@ -28,8 +29,11 @@ var args = docopt('Usage:\n  '+name+' '+usage.join('\n  '+name+' ')+'\n\nOptions
 
 try {
 	var dot_json = new DotJson(args['<file>']);
+
 	if (args['<value>']) {
 		var value = args['<value>'];
+		var indent = args['--indent'];
+
 		switch(value) {
 			case 'true':
 				value = true;
@@ -56,7 +60,7 @@ try {
 		catch(e) {
 			console.error(e.message);
 		}
-		dot_json.save();
+		dot_json.save(parseInt(indent));
 	}
 	else if (args['--delete']) {
 		dot_json.delete(args['<key-path>']);

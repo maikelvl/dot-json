@@ -113,7 +113,7 @@ describe("dot-json", function() {
 		});
 
 	});
-	
+
 	describe("#_readJsonSync()", function() {
 
 		it("should error when a non existing file is read", function() {
@@ -208,7 +208,7 @@ describe("dot-json", function() {
 				expect(value).equal("this is a string");
 				done();
 			});
-			
+
 		});
 
 		it("should be able to get the whole object when only a callback function is given", function() {
@@ -477,7 +477,7 @@ describe("dot-json", function() {
 					]
 				}
 			));
-				
+
 		});
 
 		it("should be able to set an item far into an array", function() {
@@ -488,7 +488,7 @@ describe("dot-json", function() {
 				]
 			}
 			dot_json.set('ob4.3.', "fourth");
-			
+
 			expect(JSON.stringify(dot_json._object)).equal(JSON.stringify(
 				{
 					ob4: [
@@ -544,7 +544,7 @@ describe("dot-json", function() {
 		it("should be able to set file just before saving", function(done) {
 			var file = "test-files/dot-file-test.json";
 			var dot_json = new DotJson();
-			dot_json.set('my.path', "my_string").file(file).save(function() {
+			dot_json.set('my.path', "my_string").file(file).save(2, function() {
 				fs.readFile(file, function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -564,7 +564,7 @@ describe("dot-json", function() {
 				var dot_json = new DotJson(file);
 				fs.stat(file, function(err, stat) {
 					expect(err).not.equal(null);
-					dot_json.set('write_test_string', 'testing new file string').save(function() {
+					dot_json.set('write_test_string', 'testing new file string').save(2, function() {
 						fs.stat(file, function(err, stat) {
 							expect(err).equal(null);
 							fs.unlink(file, function() {
@@ -596,7 +596,7 @@ describe("dot-json", function() {
 			var file = "test-files/set-get-existing-test.json";
 			var dot_json = new DotJson(file);
 			var date_string = new Date().toString();
-			dot_json.set('set_get_string', date_string).save(function() {
+			dot_json.set('set_get_string', date_string).save(2, function() {
 				fs.readFile(file, function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -619,7 +619,7 @@ describe("dot-json", function() {
 			var file = "test-files/set-get-new-file-test.json";
 			var dot_json = new DotJson(file);
 			var date_string = new Date().toString();
-			dot_json.set('set_get_string', date_string).save(function() {
+			dot_json.set('set_get_string', date_string).save(2, function() {
 				fs.readFile(file, function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -642,7 +642,7 @@ describe("dot-json", function() {
 			var file = "test-files/set-get-updated-test.json";
 			var dot_json = new DotJson(file);
 			var date_string = new Date().toString();
-			dot_json.set('set_get_string', date_string).save(function() {
+			dot_json.set('set_get_string', date_string).save(2, function() {
 				var dot_json_written = new DotJson(file);
 				expect(dot_json_written._object).equal(undefined);
 				dot_json_written.get('set_get_string', function(value) {
@@ -663,7 +663,7 @@ describe("dot-json", function() {
 			var dot_json = new DotJson("test-files/get-set-test.json");
 			var date_string = new Date().toString();
 			dot_json.get('get_set_string', function(v) {
-				dot_json.set('get_set_string', date_string).save(function() {
+				dot_json.set('get_set_string', date_string).save(2, function() {
 					dot_json.get('get_set_string', function(value) {
 						expect(value).equal(date_string);
 						done();
@@ -675,7 +675,7 @@ describe("dot-json", function() {
 		it("should be able to set and get a property by deep key path", function(done) {
 			var dot_json = new DotJson("test-files/set-deep-test.json");
 			var date_string = new Date().toString();
-			dot_json.set('deep.string.item', date_string).save(function() {
+			dot_json.set('deep.string.item', date_string).save(2, function() {
 				dot_json.get('deep.string.item', function(value) {
 					expect(value).equal(date_string);
 					done();
@@ -691,7 +691,7 @@ describe("dot-json", function() {
 			var file = "test-files/delete-test.json";
 			var dot_json = new DotJson(file);
 			fs.writeFile(file, JSON.stringify({delete_string: "this string is going to be deleted"}), function() {
-				dot_json.delete('delete_string').save(function() {
+				dot_json.delete('delete_string').save(2, function() {
 					fs.readFile(file, function(err, content) {
 						expect(JSON.stringify(JSON.parse(content))).equal('{}');
 						done();
@@ -720,7 +720,7 @@ describe("dot-json", function() {
 				}
 			};
 			fs.writeFile(file, JSON.stringify(object, null, '  '), function() {
-				dot_json.delete('object_item.deeper_object_item.very_deep_item_to_delete').save(function() {
+				dot_json.delete('object_item.deeper_object_item.very_deep_item_to_delete').save(2, function() {
 					fs.readFile(file, function(err, content) {
 						expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(result_object));
 						done();
@@ -741,7 +741,7 @@ describe("dot-json", function() {
 
 			}
 			var myfile = new DotJson("test-files/myfile-write.json");
-			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save(function() {
+			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save(2, function() {
 			  	fs.readFile("test-files/myfile-write.json", function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -784,7 +784,7 @@ describe("dot-json", function() {
 			,null, '  '));
 
 			var myfile = new DotJson("test-files/myfile-delete.json");
-			myfile.delete('user.name').save(function() {
+			myfile.delete('user.name').save(2, function() {
 				fs.readFile("test-files/myfile-delete.json", function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -807,7 +807,7 @@ describe("dot-json", function() {
 			}
 			var myfile = new DotJson("test-files/myfile.json");
 			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
-			myfile.save(function() {
+			myfile.save(2, function() {
 			  	fs.readFile("test-files/myfile.json", function(err, content) {
 					expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 						{
@@ -819,7 +819,7 @@ describe("dot-json", function() {
 					));
 					myfile.get('user.name', function(value) {
 						expect(value).equal("John Doe");
-						myfile.delete('user.name').save(function() {
+						myfile.delete('user.name').save(2, function() {
 							fs.readFile("test-files/myfile.json", function(err, content) {
 								expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 									{
@@ -844,7 +844,7 @@ describe("dot-json", function() {
 
 			}
 			var myfile = new DotJson("test-files/myfile-write-sync.json");
-			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save();
+			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com').save(2);
 		  	fs.readFile("test-files/myfile-write-sync.json", function(err, content) {
 				expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 					{
@@ -884,7 +884,7 @@ describe("dot-json", function() {
 			,null, '  '));
 
 			var myfile = new DotJson("test-files/myfile-delete-sync.json");
-			myfile.delete('user.name').save();
+			myfile.delete('user.name').save(2);
 			fs.readFile("test-files/myfile-delete-sync.json", function(err, content) {
 				expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 					{
@@ -907,7 +907,7 @@ describe("dot-json", function() {
 
 			var myfile = new DotJson("test-files/myfile-sync.json");
 			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
-			myfile.save();
+			myfile.save(2);
 		  	var content = fs.readFileSync("test-files/myfile-sync.json");
 			expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 				{
@@ -917,11 +917,11 @@ describe("dot-json", function() {
 					}
 				}
 			));
-			
+
 			var value = myfile.get('user.name');
 			expect(value).equal("John Doe");
-			
-			myfile.delete('user.name').save();
+
+			myfile.delete('user.name').save(2);
 			var content = fs.readFileSync("test-files/myfile-sync.json");
 			expect(JSON.stringify(JSON.parse(content))).equal(JSON.stringify(
 				{

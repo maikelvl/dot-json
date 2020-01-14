@@ -696,6 +696,45 @@ describe("dot-json", function() {
 			});
 		});
 
+		it("should be able to detect 3 space indents", function() {
+			fs.writeFileSync(dir+'/auto-space-indent-test.json', JSON.stringify(
+				{
+					user: {}
+				}
+			,null, 3));
+
+			var myfile = new DotJson(dir+'/auto-space-indent-test.json');
+			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
+			myfile.save('auto')
+			var content = fs.readFileSync(dir+'/auto-space-indent-test.json', 'utf8');
+			expect(myfile.indent()).equal('   ')
+			expect(content).equal('{\n   \"user\": {\n      \"name\": \"John Doe\",\n      \"email\": \"john@example.com\"\n   }\n}\n');
+		});
+
+		it("should be able to detect tab indents", function() {
+			fs.writeFileSync(dir+'/auto-tab-indent-test.json', JSON.stringify(
+				{
+					user: {}
+				}
+			,null, '\t'));
+
+			var myfile = new DotJson(dir+'/auto-tab-indent-test.json');
+			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
+			myfile.save('auto')
+			var content = fs.readFileSync(dir+'/auto-tab-indent-test.json', 'utf8');
+			expect(myfile.indent()).equal('\t')
+			expect(content).equal('{\n\t\"user\": {\n\t\t\"name\": \"John Doe\",\n\t\t\"email\": \"john@example.com\"\n\t}\n}\n');
+		});
+
+		it("should be use 2 spaces indents by default when creating new file", function() {
+			var myfile = new DotJson(dir+'/new-2-space-indent-test.json');
+			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
+			myfile.save('auto')
+			var content = fs.readFileSync(dir+'/new-2-space-indent-test.json', 'utf8');
+			expect(myfile.indent()).equal('  ')
+			expect(content).equal('{\n  \"user\": {\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\"\n  }\n}\n');
+		});
+
 	});
 
 	describe("#delete()", function() {

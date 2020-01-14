@@ -11,15 +11,15 @@ var DotJson = require('../')
 
 var usage = [
 	'<file> <key-path>',
-	'<file> <key-path> <value> [--indent=<n>]',
+	'<file> <key-path> <value> [--indent=<n|auto>]',
 	'<file> <key-path> --delete',
 ];
 
 var options = [
-	'--indent=<n>    Indent with <n> of white space characters [default: 2]',
-	'-d --delete     Delete the key-path',
-	'-h --help       Show this message with options',
-	'-v --version    Print the version number',
+	'--indent=<n|auto>    Indent with <n> of white space characters [default: auto]',
+	'-d --delete          Delete the key-path',
+	'-h --help            Show this message with options',
+	'-v --version         Print the version number',
 ];
 
 var name = path.basename(__filename, '.js');
@@ -60,7 +60,7 @@ try {
 		catch(e) {
 			console.error(e.message);
 		}
-		dot_json.save(parseInt(indent));
+		dot_json.save(indent);
 	}
 	else if (args['--delete']) {
 		dot_json.delete(args['<key-path>']);

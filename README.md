@@ -38,7 +38,7 @@ Usage:
   dot-json <file> <key-path> --delete    Delete a key by key-path
 
 Options:
-  --indent=<n>    Indent with <n> of white space characters [default: 2]
+  --indent=<n>    Indent with <n> of white space characters [default: auto]
   -d --delete     Delete the key-path
   -h --help       Show this message with options
   -v --version    Print the version number

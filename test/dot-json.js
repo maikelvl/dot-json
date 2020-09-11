@@ -311,6 +311,12 @@ describe("dot-json", function() {
 			expect(JSON.stringify(dot_json._object)).equal(JSON.stringify({hello: "world"}));
 		});
 
+		it("should be able to set a dotted property on object", function() {
+			var dot_json = new DotJson();
+			dot_json.set("foo..bar", "baz");
+			expect(JSON.stringify(dot_json._object)).equal(JSON.stringify({"foo.bar": "baz"}));
+		});
+
 		it("should be able to set a property on a prepared key path", function() {
 			var dot_json = new DotJson();
 

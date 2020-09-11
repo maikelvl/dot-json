@@ -16,6 +16,7 @@ npm install --save dot-json
 ```bash
 dot-json myfile.json user.name "John Doe"
 dot-json myfile.json user.email "john@example.com"
+dot-json myfile.json foo..bar baz
 ```
 myfile.json now looks like
 ```json
@@ -23,7 +24,8 @@ myfile.json now looks like
     "user": {
         "name": "John Doe",
         "email": "john@example.com"
-    }
+    },
+    "foo.bar": "baz"
 }
 ```
 

@@ -1,5 +1,8 @@
 # dot-json
+
 [![Build Status](https://travis-ci.org/maikelvl/dot-json.svg?branch=master)](https://travis-ci.org/maikelvl/dot-json)
+[![huntr](https://cdn.huntr.dev/huntr_security_badge_mono.svg)](https://huntr.dev)
+
 ---
 
 Easily edit a json file from the CLI or NodeJS.

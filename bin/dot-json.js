@@ -7,17 +7,19 @@ var DotJson = require('../')
 	,path = require('path')
 	,docopt = require('docopt').docopt
 	,package_ = require('../package.json')
+	,parseValue = require('../lib/parse-value')
 	;
 
 var usage = [
 	'<file> <key-path>',
-	'<file> <key-path> <value> [--indent=<n|auto>]',
+	'<file> <key-path> <value> [--indent=<n|auto>] [--json-value]',
 	'<file> <key-path> --delete',
 ];
 
 var options = [
 	'--indent=<n|auto>    Indent with <n> of white space characters [default: auto]',
 	'-d --delete          Delete the key-path',
+	'-j --json-value      Parse the input value as a JSON string (to set whole objects or arrays)',
 	'-h --help            Show this message with options',
 	'-v --version         Print the version number',
 ];
@@ -31,29 +33,9 @@ try {
 	var dot_json = new DotJson(args['<file>']);
 
 	if (args['<value>']) {
-		var value = args['<value>'];
+		var value = parseValue(args['<value>'], args['--json-value']);
 		var indent = args['--indent'];
 
-		switch(value) {
-			case 'true':
-				value = true;
-				break;
-			case 'false':
-				value = false;
-				break;
-			case 'undefined':
-				value = undefined;
-				break;
-			case 'null':
-				value = null;
-				break;
-		}
-		if (value == parseInt(value)) {
-			value = parseInt(value);
-		}
-		else if(value == parseFloat(value)) {
-			value = parseFloat(value);
-		}
 		try {
 			dot_json.set(args['<key-path>'], value);
 		}

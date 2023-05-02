@@ -13,13 +13,14 @@ npm install -g dot-json
 ```
 or local
 ```bash
-npm install --save dot-json
+npm install dot-json
 ```
 ### Use from the CLI
 ```bash
 dot-json myfile.json user.name "John Doe"
 dot-json myfile.json user.email "john@example.com"
 dot-json myfile.json foo..bar baz
+dot-json myfile.json address '{"city":"Atlantis"}' --json-value
 ```
 myfile.json now looks like
 ```json
@@ -28,7 +29,10 @@ myfile.json now looks like
         "name": "John Doe",
         "email": "john@example.com"
     },
-    "foo.bar": "baz"
+    "foo.bar": "baz",
+    "address": {
+        "city": "Atlantis"
+    }
 }
 ```
 
@@ -43,10 +47,11 @@ Usage:
   dot-json <file> <key-path> --delete    Delete a key by key-path
 
 Options:
-  --indent=<n>    Indent with <n> of white space characters [default: auto]
-  -d --delete     Delete the key-path
-  -h --help       Show this message with options
-  -v --version    Print the version number
+  --indent=<n>      Indent with <n> of white space characters [default: auto] [--json-value]
+  -d --delete       Delete the key-path
+  -j --json-value   Parse the input value as a JSON string (to set whole objects or arrays)
+  -h --help         Show this message with options
+  -v --version      Print the version number
 ```
 
 ### Quick tip for editing package.json

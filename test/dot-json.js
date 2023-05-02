@@ -732,7 +732,7 @@ describe("dot-json", function() {
 			expect(content).equal('{\n\t\"user\": {\n\t\t\"name\": \"John Doe\",\n\t\t\"email\": \"john@example.com\"\n\t}\n}\n');
 		});
 
-		it("should be use 2 spaces indents by default when creating new file", function() {
+		it("should use 2 spaces indents by default when creating new file", function() {
 			var myfile = new DotJson(dir+'/new-2-space-indent-test.json');
 			myfile.set('user.name', 'John Doe').set('user.email', 'john@example.com');
 			myfile.save('auto')

@@ -46,7 +46,7 @@ Usage:
   dot-json <file> <key-path> --delete    Delete a key by key-path
 
 Options:
-  --indent=<n>      Indent with <n> of white space characters [default: auto] [--json-value]
+  --indent=<n>      Indent with <n> of white space characters [default: auto]
   -d --delete       Delete the key-path
   -j --json-value   Parse the input value as a JSON string (to set whole objects or arrays)
   -h --help         Show this message with options

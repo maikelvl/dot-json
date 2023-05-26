@@ -54,13 +54,12 @@ Options:
 ```
 
 ### Quick tip for editing package.json
-Add to .bash_profile:
+
+npm 7+ has a [`pkg` command](https://docs.npmjs.com/cli/commands/npm-pkg) that does the same thing without having to use dot-json:
+
 ```bash
-alias package="dot-json package.json"
-```
-Use it like this:
-```bash
-package name "my-package"
+npm pkg get scripts.test
+npm pkg set name=my-new-package
 ```
 
 ### Use it in NodeJS

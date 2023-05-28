@@ -46,7 +46,7 @@ Usage:
   dot-json <file> <key-path> --delete    Delete a key by key-path
 
 Options:
-  --indent=<n>      Indent with <n> of white space characters [default: auto] [--json-value]
+  --indent=<n>      Indent with <n> of white space characters [default: auto]
   -d --delete       Delete the key-path
   -j --json-value   Parse the input value as a JSON string (to set whole objects or arrays)
   -h --help         Show this message with options
@@ -54,13 +54,12 @@ Options:
 ```
 
 ### Quick tip for editing package.json
-Add to .bash_profile:
+
+If you want to change package.json, you can use npm’s [`pkg` command](https://docs.npmjs.com/cli/commands/npm-pkg) instead of `dot-json`:
+
 ```bash
-alias package="dot-json package.json"
-```
-Use it like this:
-```bash
-package name "my-package"
+npm pkg get scripts.test
+npm pkg set name=my-new-package
 ```
 
 ### Use it in NodeJS

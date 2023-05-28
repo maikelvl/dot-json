@@ -55,7 +55,7 @@ Options:
 
 ### Quick tip for editing package.json
 
-npm 7+ has a [`pkg` command](https://docs.npmjs.com/cli/commands/npm-pkg) that does the same thing without having to use dot-json:
+If you want to change package.json, you can use npm’s [`pkg` command](https://docs.npmjs.com/cli/commands/npm-pkg) instead of `dot-json`:
 
 ```bash
 npm pkg get scripts.test
